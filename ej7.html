@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <title>JS Basics</title>
+ <style>
+ .todo{
+   float: left;
+   cursor: pointer;
+ }
+ .done{
+   float: left;
+   margin-left: 100px;
+ }
+ </style>
+</head>
+<body>
+  <ol class="todo" id="todo">
+   <h3>To Do:</h3>
+  </ol>
+  <ol class="done" id="done">
+   <h3>Done:</h3>
+  </ol>
+  <script>
+ var asdf = [{
+   "completed":false,
+   "id":1,
+   "title":"Delectus aut autem",
+   },
+   {
+   "completed":false,
+   "id":2,
+   "title":"Quis ut nam facilis et officia qui",
+   },
+   {"completed":false,
+   "id":3,
+   "title":"Fugiat veniam minus",
+   },
+   {
+   "completed":true,
+   "id":4,
+   "title":"Et porro tempora",
+   },
+   {
+   "completed":false,
+   "id":5,
+   "title":"Laboriosam mollitia et enim quasi adipisci quia provident illum"
+  ,
+   },
+   {
+   "completed":false,
+   "id":6,
+   "title":"Qui ullam ratione quibusdam voluptatem quia omnis",
+   },
+   {
+   "completed":false,
+   "id":7,
+   "title":"Illo expedita consequatur quia in",
+   "userId":1
+   },
+   {
+   "completed":true,
+   "id":8,
+   "title":"Quo adipisci enim quam ut ab",
+  },
+  {
+  "completed":false,
+  "id":9,
+  "title":"Molestiae perspiciatis ipsa",
+  },
+  {
+  "completed":true,
+  "id":10,
+  "title":"Illo est ratione doloremque quia maiores aut",
+  }];
+  var todo = document.getElementById('todo');
+	var done = document.getElementById('done');
+  for (var i = 0; i < asdf.length; i++) {
+			var tag = document.createElement('li');
+			tag.setAttribute("onclick", "completeTask(" + asdf[i].id + ")");
+			tag.setAttribute("id", asdf[i].id);
+
+			var text = document.createTextNode(asdf[i].title);
+			tag.appendChild(text);
+			if (!asdf[i].completed) {
+				todo.appendChild(tag);
+			} else {
+				done.appendChild(tag);
+			};
+		};
+    function completeTask(id) {
+			for (var i = 0; i < asdf.length; i++) {
+				if (asdf[i].id == id) {
+					asdf[i].completed = true;
+					var todos = document.getElementById(asdf[i].id);
+					todo.removeChild(todos);
+					done.appendChild(todos);
+				};
+			};
+		};
+</script>
+</body>
+</html>
